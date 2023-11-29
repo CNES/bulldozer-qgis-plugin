@@ -1,0 +1,51 @@
+# Bulldozer Developer Guide
+
+## Introduction
+
+This guide provides detailed documentation for the Bulldozer QGIS Processing provider. The Bulldozer plugin is designed to enhance digital terrain modeling within QGIS. It includes basic, advanced, and config file-driven functionalities to suit different user needs and scenarios.
+
+## File Structure
+
+Below is the structure of the essential files within the Bulldozer plugin:
+
+```
+.
+├── atelier3D_-_logo.png
+├── BulldozerDtmProvider_Advanced_algorithm.py
+├── BulldozerDtmProvider_algorithm.py
+├── BulldozerDtmProvider_Basic_Algorithm.py
+├── BulldozerDtmProvider_ConfigFile_algorithm.py
+├── BulldozerDtmProvider_provider.py
+├── BulldozerDtmProvider.py
+├── BulldozerDtmProviderSettings.py
+└── import_bulldozer.py
+```
+
+### Descriptions
+
+- **BulldozerDtmProvider_algorithm.py**: Base class for all algorithms. Defines common functionalities and structures.
+- **BulldozerDtmProvider_Basic_Algorithm.py**: Implements the basic usage scenario with input digital terrain model (DTM) and output folder specification.
+- **BulldozerDtmProvider_Advanced_algorithm.py**: Provides access to all customizable parameters of the Bulldozer, suitable for advanced users.
+- **BulldozerDtmProvider_ConfigFile_algorithm.py**: Utilizes an input configuration file to set parameters dynamically.
+- **import_bulldozer.py**: Checks for the presence of the `bulldozer-dtm` library in the current environment, installs it if absent, and configures the environment accordingly.
+
+
+## Parameters
+
+Parameters are defined within each algorithm's `initAlgorithm` method. Refer to the individual algorithm files for detailed parameter listings and default values.
+
+## Resources
+
+- [QGIS Processing Documentation](https://docs.qgis.org/3.34/en/docs/user_manual/processing/scripts.html)
+- [Bulldozer GitHub Repository](https://gitlab.cnes.fr/3d/tools/bulldozer-qgis-plugin)
+
+## Contributing
+
+Contributions to the Bulldozer plugin are welcome. To contribute:
+- Fork the repository.
+- Make your changes and write clear, concise commit messages.
+- Submit a pull request detailing the changes made and their purpose.
+
+## Troubleshooting
+
+For common issues and their solutions, visit the [Issues section of our Gitlab repository](https://gitlab.cnes.fr/3d/tools/bulldozer-qgis-plugin/-/issues).
