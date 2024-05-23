@@ -26,7 +26,6 @@ You can also install the plugin manually:
 1. **Download**: Download the latest version of the plugin from the [QGIS Plugin Hub](https://plugins.qgis.org/) or [Gitlab repository](https://gitlab.cnes.fr/3d/tools/bulldozer-qgis-plugin).
 2. **Install**: Copy the plugin files into your QGIS plugin directory, typically located at:
    - Windows: `C:\Users\[username]\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\`
-   - MacOS: `~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/`
    - Linux: `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
 3. **Restart QGIS**: Restart QGIS to load the new plugin.
 
