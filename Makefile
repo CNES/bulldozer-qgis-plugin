@@ -38,21 +38,21 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	BulldozerDtmProvider.py 
+	BulldozerDtmProvider.py
 
 PLUGINNAME = BulldozerDtmProvider
 
 PY_FILES = \
 	__init__.py \
-	BulldozerDtmProvider.py 
+	BulldozerDtmProvider.py
 
-UI_FILES = 
+UI_FILES =
 
-EXTRAS = metadata.txt 
+EXTRAS = metadata.txt
 
 EXTRA_DIRS =
 
-COMPILED_RESOURCE_FILES = 
+COMPILED_RESOURCE_FILES =
 
 PEP8EXCLUDE=pydev,resources.py,conf.py,third_party,ui
 
@@ -84,7 +84,7 @@ default:
 	@echo A Python script, pb_tool provides platform independent management of
 	@echo your plugins and runs anywhere.
 	@echo You can install pb_tool using: pip install pb_tool
-	@echo See https://g-sherman.github.io/plugin_build_tool/ for info. 
+	@echo See https://g-sherman.github.io/plugin_build_tool/ for info.
 
 compile: $(COMPILED_RESOURCE_FILES)
 
