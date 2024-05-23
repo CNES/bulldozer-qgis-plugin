@@ -125,7 +125,6 @@ deploy: compile doc transcompile
 	cp -vf $(UI_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vf $(COMPILED_RESOURCE_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vf $(EXTRAS) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vfr i18n $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vfr $(HELP) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)/help
 	# Copy extra directories if any
 	(foreach EXTRA_DIR,(EXTRA_DIRS), cp -R (EXTRA_DIR) (HOME)/(QGISDIR)/python/plugins/(PLUGINNAME)/;)
@@ -195,13 +194,6 @@ transcompile:
 	@echo "----------------------------------------"
 	@chmod +x scripts/compile-strings.sh
 	@scripts/compile-strings.sh $(LRELEASE) $(LOCALES)
-
-transclean:
-	@echo
-	@echo "------------------------------------"
-	@echo "Removing compiled translation files."
-	@echo "------------------------------------"
-	rm -f i18n/*.qm
 
 clean:
 	@echo
