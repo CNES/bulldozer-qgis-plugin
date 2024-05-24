@@ -99,7 +99,7 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
         """
         Returns the algorithm name, used for identifying the algorithm.
         """
-        return 'Bulldozer (Config file)'
+        return 'Bulldozer (Using config file)'
 
     def createInstance(self):
         """
