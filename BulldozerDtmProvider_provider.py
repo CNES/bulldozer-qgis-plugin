@@ -37,6 +37,7 @@ from .BulldozerDtmProvider_Basic_Algorithm import BulldozerDtmProviderBasicAlgor
 from .BulldozerDtmProvider_Advanced_algorithm import BulldozerDtmProviderAdvancedAlgorithm
 from .BulldozerDtmProviderSettings import BulldozerDtmProviderSettings
 from .BulldozerDtmProvider_ConfigFile_algorithm import BulldozerDtmProviderConfigFileAlgorithm
+from .BulldozerDtmProvider_GenerateConfigFile import BulldozerDtmProviderGenerateConfigFile
 from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
 
 
@@ -72,6 +73,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         self.addAlgorithm(BulldozerDtmProviderBasicAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderAdvancedAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderConfigFileAlgorithm())
+        self.addAlgorithm(BulldozerDtmProviderGenerateConfigFile())
 
     def validateBulldozerInstall(self, folder):
         """
