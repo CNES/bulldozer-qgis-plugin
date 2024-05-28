@@ -43,7 +43,6 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingParameterFolderDestination,
                        QgsRasterLayer,
                        QgsProject)
-from samba.emulate.traffic import ou_name
 
 from .import_bulldozer import dsm_to_dtm
 from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
