@@ -34,4 +34,3 @@ class BulldozerDtmProviderSettings(object):
             BulldozerDtmProviderSettings.ACTIVATE,
             BulldozerDtmProviderSettings.FOLDER,
         ]
-

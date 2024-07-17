@@ -85,7 +85,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                         defaultValue=False))
 
         self.addParameter(QgsProcessingParameterNumber(self.MAX_OBJECT_WIDTH,
-                                                       self.tr('Foreground max object width (in meter)'),
+                                                       self.tr('Foreground max object width '
+                                                               '(in meter)'),
                                                        type=QgsProcessingParameterNumber.Integer,
                                                        minValue=0,
                                                        defaultValue=16))
@@ -101,11 +102,14 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
 
         self.addParameter(QgsProcessingParameterNumber(self.MIN_VALID_HEIGH,
                                                        self.tr(
-                                                           'DSM minimum valid elevation. All the points lower this threshold will be consider as nodata'),
+                                                           'DSM minimum valid elevation. '
+                                                           'All the points lower this threshold '
+                                                           'will be consider as nodata'),
                                                        type=QgsProcessingParameterNumber.Double))
 
         self.addParameter(QgsProcessingParameterBoolean(self.CHECK_INTERSECTION,
-                                                        self.tr('Allows snapping DTM values above the DSM to the DSM'),
+                                                        self.tr('Allows snapping DTM values above '
+                                                                'the DSM to the DSM'),
                                                         defaultValue=False))
 
         self.addParameter(QgsProcessingParameterBoolean(self.DEVELOPPER_MODE,
@@ -132,8 +136,9 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         developper_mode = self.parameterAsInt(parameters, self.DEVELOPPER_MODE, context)
         output_dir = self.parameterAsString(parameters, self.OUTPUT_DIRECTORY, context)
 
-        dsm_to_dtm(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers, generate_dhm=generate_dhm,
-                   max_object_width=max_object_width, output_resolution=output_resolution, no_data=no_data,
+        dsm_to_dtm(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers,
+                   generate_dhm=generate_dhm, max_object_width=max_object_width,
+                   output_resolution=output_resolution, no_data=no_data,
                    min_valid_heigh=min_valid_heigh, check_intersection=check_intersection,
                    developper_mode=developper_mode)
 

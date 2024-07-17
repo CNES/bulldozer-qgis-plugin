@@ -62,7 +62,8 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         """
         group = self.name()
         ProcessingConfig.settingIcons[group] = self.icon()
-        ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.ACTIVATE, self.tr('Activate'), True))
+        ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.ACTIVATE,
+                                            self.tr('Activate'), True))
         ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.FOLDER,
                                             self.tr("Bulldozer venv folder"),
                                             ProcessingConfig.getSetting(BulldozerDtmProviderSettings.FOLDER),

@@ -85,7 +85,8 @@ class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAlgorithm):
                                                         defaultValue=False))
 
         self.addParameter(QgsProcessingParameterNumber(self.MAX_OBJECT_WIDTH,
-                                                       self.tr('Foreground max object width (in meter)'),
+                                                       self.tr('Foreground max object width '
+                                                               '(in meter)'),
                                                        type=QgsProcessingParameterNumber.Integer,
                                                        minValue=0,
                                                        defaultValue=16))
@@ -101,11 +102,14 @@ class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAlgorithm):
 
         self.addParameter(QgsProcessingParameterNumber(self.MIN_VALID_HEIGH,
                                                        self.tr(
-                                                           'DSM minimum valid elevation. All the points lower this threshold will be consider as nodata'),
+                                                           'DSM minimum valid elevation. All the '
+                                                           'points lower this threshold will be '
+                                                           'consider as nodata'),
                                                        type=QgsProcessingParameterNumber.Double))
 
         self.addParameter(QgsProcessingParameterBoolean(self.CHECK_INTERSECTION,
-                                                        self.tr('Allows snapping DTM values above the DSM to the DSM'),
+                                                        self.tr('Allows snapping DTM values above '
+                                                                'the DSM to the DSM'),
                                                         defaultValue=False))
 
         self.addParameter(QgsProcessingParameterBoolean(self.DEVELOPPER_MODE,
@@ -113,7 +117,8 @@ class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAlgorithm):
                                                         defaultValue=False))
 
         self.addParameter(QgsProcessingParameterFolderDestination(self.OUTPUT_DIRECTORY,
-                                                                  self.tr('Bulldozer output directory'),
+                                                                  self.tr('Bulldozer output '
+                                                                          'directory'),
                                                                   optional=True))
 
 
