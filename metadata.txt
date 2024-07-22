@@ -8,12 +8,12 @@ qgisMinimumVersion=3.0
 description=BulldozerDtmProvider
 version=0.1
 author=CNES
-email=alexia.mondot@cnes.fr
+email=!!FIXME!!
 
 about=Provide a brief description of the plugin and its purpose.
 
-tracker=http://bugs
-repository= https://gitlab.cnes.fr/3d/bulldozer/
+tracker=https://github.com/CNES/bulldozer-qgis-plugin/issues
+repository= https://github.com/CNES/bulldozer-qgis-plugin/
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,7 +25,7 @@ hasProcessingProvider=yes
 # Tags are comma separated with spaces allowed
 tags=python
 
-homepage=http://homepage
+homepage=https://github.com/CNES/bulldozer-qgis-plugin/
 category=Analysis
 icon=bulldozer_logo.png
 # experimental flag
@@ -44,4 +44,3 @@ Category of the plugin: Raster, Vector, Database or Web
 
 # If the plugin can run on QGIS Server.
 server=False
-
