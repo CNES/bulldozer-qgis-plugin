@@ -19,13 +19,6 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-__author__ = 'CNES'
-__date__ = '2023-04-17'
-__copyright__ = '(C) 2023 by CNES'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
 
 import os
 from qgis.PyQt.QtCore import QCoreApplication
