@@ -34,6 +34,28 @@ Below is the structure of the essential files within the Bulldozer plugin:
 
 Parameters are defined within each algorithm's `initAlgorithm` method. Refer to the individual algorithm files for detailed parameter listings and default values.
 
+## Adding a new file to the project
+When adding a new file to this project, `Makefile` and `pb_tool.cfg` files have to be updated.
+
+Look for the section `PY_FILES` in the `Makefile` where source files are listed. Add your new file to these sections. For example, you might have a section like this:
+
+```
+PY_FILES = \
+	__init__.py \
+	BulldozerDtmProvider.py\
+	BulldozerDtmProvider_Advanced_algorithm.py \
+    new_file.py
+```
+
+Add the path to the new file in `pb_tool.cfg` in the [files] section.
+
+```
+[files]
+# Python  files that should be deployed with the plugin
+python_files: __init__.py BulldozerDtmProvider.py new_file.py
+```
+
+
 ## Resources
 
 - [QGIS Processing Documentation](https://docs.qgis.org/3.34/en/docs/user_manual/processing/scripts.html)
