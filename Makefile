@@ -38,13 +38,31 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	BulldozerDtmProvider.py
+	BulldozerDtmProvider.py\
+	BulldozerDtmProvider_Advanced_algorithm.py \
+	BulldozerDtmProvider_Basic_Algorithm.py \
+	BulldozerDtmProvider_GenerateConfigFile.py \
+	import_bulldozer.py \
+	BulldozerDtmProvider_algorithm.py \
+	BulldozerDtmProvider_ConfigFile_algorithm.py\
+	BulldozerDtmProvider_provider.py \
+	BulldozerDtmProviderSettings.py \
+	BulldozerDtmProvider_Params.py
 
 PLUGINNAME = BulldozerDtmProvider
 
 PY_FILES = \
 	__init__.py \
-	BulldozerDtmProvider.py
+	BulldozerDtmProvider.py \
+	BulldozerDtmProvider_Advanced_algorithm.py \
+	BulldozerDtmProvider_Basic_Algorithm.py \
+	BulldozerDtmProvider_GenerateConfigFile.py \
+	import_bulldozer.py \
+	BulldozerDtmProvider_algorithm.py \
+	BulldozerDtmProvider_ConfigFile_algorithm.py\
+	BulldozerDtmProvider_provider.py \
+	BulldozerDtmProviderSettings.py \
+	BulldozerDtmProvider_Params.py
 
 UI_FILES =
 
