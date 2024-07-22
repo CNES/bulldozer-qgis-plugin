@@ -30,11 +30,12 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterNumber,
                        QgsRasterLayer,
-                       QgsProject)
+                       QgsProject, QgsProcessingException)
 
-from .import_bulldozer import dsm_to_dtm
 from bulldozer.utils.config_parser import ConfigParser
+from .import_bulldozer import dsm_to_dtm
 from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
+from .BulldozerDtmProvider_Params import check_params, BulldozerParameterException
 
 class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
     """
@@ -61,6 +62,13 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
         """
 
         source = self.parameterAsString(parameters, self.INPUT, context)
+
+        try:
+            check_params(config_path=source)
+        except BulldozerParameterException as e:
+            feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
+            raise QgsProcessingException(f"Parameters are not valid : {e}")
+
 
         dsm_to_dtm(config_path=source)
 

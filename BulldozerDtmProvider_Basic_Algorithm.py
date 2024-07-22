@@ -31,10 +31,11 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingParameterNumber,
                        QgsProcessingParameterFolderDestination,
                        QgsRasterLayer,
-                       QgsProject)
+                       QgsProject, QgsProcessingException)
 
 from .import_bulldozer import dsm_to_dtm
 from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
+from .BulldozerDtmProvider_Params import check_params, BulldozerParameterException
 
 
 class BulldozerDtmProviderBasicAlgorithm(BulldozerDtmProviderAlgorithm):
@@ -77,6 +78,12 @@ class BulldozerDtmProviderBasicAlgorithm(BulldozerDtmProviderAlgorithm):
         nb_max_workers = self.parameterAsInt(parameters, self.NB_WORKERS, context)
 
         output_dir = self.parameterAsString(parameters, self.OUTPUT_DIRECTORY, context)
+
+        try:
+            check_params(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers)
+        except BulldozerParameterException as e:
+            feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
+            raise QgsProcessingException(f"Parameters are not valid : {e}")
 
         dsm_to_dtm(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers)
 
