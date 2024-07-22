@@ -10,7 +10,6 @@ Below is the structure of the essential files within the Bulldozer plugin:
 
 ```
 .
-├── atelier3D_-_logo.png
 ├── BulldozerDtmProvider_Advanced_algorithm.py
 ├── BulldozerDtmProvider_algorithm.py
 ├── BulldozerDtmProvider_Basic_Algorithm.py

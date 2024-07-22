@@ -94,7 +94,7 @@ class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
 
 
     def icon(self):
-        return QIcon(os.path.join(os.path.dirname(__file__), 'bulldozer_logo.png'))
+        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'bulldozer_logo.png'))
 
 
     def tags(self):

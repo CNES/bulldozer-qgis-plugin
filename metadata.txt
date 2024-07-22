@@ -27,7 +27,7 @@ tags=python
 
 homepage=https://github.com/CNES/bulldozer-qgis-plugin/
 category=Analysis
-icon=bulldozer_logo.png
+icon=img/bulldozer_logo.png
 # experimental flag
 experimental=False
 
