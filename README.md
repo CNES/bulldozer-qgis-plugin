@@ -42,7 +42,7 @@ It integrates seamlessly with QGIS's Processing framework, offering three main a
 3. **Advanced Algorithm**: Gives users access to all customizable parameters of the Bulldozer.
 
 
-
+## Quickstart
 
 ### Installation
 
@@ -105,3 +105,7 @@ The **Bulldozer plugin** is released under GPL V2. For details, see the **Bulldo
 ## Credits
 
 Please refer to the [Authors file](AUTHORS.md).
+
+## Reference
+
+ [D. Lallement, P. Lassalle, Y. Ott, R. Demortier, and J. Delvit, 2022. BULLDOZER: AN AUTOMATIC SELF-DRIVEN LARGE SCALE DTM EXTRACTION METHOD FROM DIGITAL SURFACE MODEL. ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences.](https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLIII-B2-2022/409/2022/)
