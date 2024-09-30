@@ -92,9 +92,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         """
         return self.tr('Bulldozer')
 
-    def helpId(self):
-        return 'bulldozer'
-
     def icon(self):
         """
         Should return a QIcon which is used for your provider inside
