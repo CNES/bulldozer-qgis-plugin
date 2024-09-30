@@ -28,7 +28,6 @@ from .bulldozer_parameters import bulldozer_pipeline_params
 class BulldozerParameterException(Exception):
     """ Custom exception for Bulldozer parameters
     """
-    pass
 
 
 def get_combined_list_params():
@@ -60,7 +59,8 @@ def get_from_params_base(param_name, list_param_objects):
     if len(res_temp) == 1:
         return res_temp[0]
     elif len(res_temp) == 0:
-        raise BulldozerParameterException(f"Parameter not found in the parameters dictionary: {param_name}")
+        message = f"Parameter not found in the parameters dictionary:{param_name}"
+        raise BulldozerParameterException(message)
     else:
         raise BulldozerParameterException("Multiple parameters found in the parameters dictionary")
 
@@ -77,7 +77,8 @@ def check_params(*args, **kwargs):
 
     params_baseline = get_combined_list_params()
 
-    # pour chaque parametre de la fonction, récuprérer le paramètre correspondant avec get_from_params_base
+    # pour chaque parametre de la fonction, récuprérer le paramètre correspondant
+    # avec get_from_params_base
     for key, value in kwargs.items():
         if key == "config_file":
             if not isinstance(value, str):

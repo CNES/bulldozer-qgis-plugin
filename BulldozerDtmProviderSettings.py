@@ -20,9 +20,9 @@
 # more details.
 
 
-class BulldozerDtmProviderSettings(object):
+class BulldozerDtmProviderSettings:
     """
-    OtbSetting's key names
+    Setting's key names
     """
     # Checkbox to enable/disable otb provider (bool).
     ACTIVATE = "BULLDOZER_ACTIVATE"

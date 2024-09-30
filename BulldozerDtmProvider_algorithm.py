@@ -24,16 +24,7 @@ import os
 
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterFeatureSink,
-                       QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterNumber,
-                       QgsProcessingParameterFolderDestination,
-                       QgsRasterLayer,
-                       QgsProject)
+from qgis.core import QgsProcessingAlgorithm
 
 from .import_bulldozer import dsm_to_dtm
 

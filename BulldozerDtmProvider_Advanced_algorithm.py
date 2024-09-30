@@ -32,7 +32,8 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingParameterBoolean,
                        QgsProcessingParameterFolderDestination,
                        QgsRasterLayer,
-                       QgsProject, QgsProcessingException)
+                       QgsProject, QgsProcessingException,
+                       QgsProcessingParameterDefinition)
 
 from .import_bulldozer import dsm_to_dtm
 from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
@@ -133,8 +134,10 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
 
             params_for_bulldozer[param_name] = param_value
 
-        params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters, self.INPUT, context).source()
-        # params_for_bulldozer["output_dir"] = self.parameterAsString(parameters, self.OUTPUT_DIRECTORY, context)
+        params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters,
+                                                                 self.INPUT, context).source()
+        # params_for_bulldozer["output_dir"] = self.parameterAsString(parameters,
+        # self.OUTPUT_DIRECTORY, context)
 
         # source = self.parameterAsLayer(parameters, self.INPUT, context).source()
         # nb_max_workers = self.parameterAsInt(parameters, self.NB_WORKERS, context)

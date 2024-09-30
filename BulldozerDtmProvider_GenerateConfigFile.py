@@ -132,8 +132,10 @@ class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAlgorithm):
 
             params_for_bulldozer[param_name] = param_value
 
-        params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters, self.INPUT, context).source()
-        params_for_bulldozer["config_file"] = self.parameterAsString(parameters, self.CONFIG_FILE, context)
+        params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters,
+                                                                 self.INPUT, context).source()
+        params_for_bulldozer["config_file"] = self.parameterAsString(parameters,
+                                                                     self.CONFIG_FILE, context)
 
         try:
             check_params(**params_for_bulldozer)
