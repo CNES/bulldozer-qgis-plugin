@@ -137,8 +137,11 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                         param_value = None
             elif param.param_type == str:
                 param_value = self.parameterAsString(parameters, param_name_upper, context)
+            if param_value is None:
+                param_value = param.default_value
 
-            params_for_bulldozer[param_name] = param_value
+            if param_value is not None:
+                params_for_bulldozer[param_name] = param_value
 
         params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters,
                                                                  self.INPUT, context).source()
