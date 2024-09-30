@@ -64,7 +64,6 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         """
         params = get_combined_list_params_for_advanced_app()
 
-
         self.addParameter(QgsProcessingParameterRasterLayer(self.INPUT,
                                                             self.tr('Input DSM')
                                                             )
@@ -74,7 +73,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
             if param.param_type == bool:
                 new_param = QgsProcessingParameterBoolean(param.name,
                                                           param.description,
-                                                          defaultValue=param.default_value)
+                                                          defaultValue=param.default_value,
+                                                          optional=True)
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
                 self.addParameter(new_param)
 
@@ -83,7 +83,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Integer,
                                                          minValue=0,  # FIXME
-                                                         defaultValue=param.default_value)
+                                                         defaultValue=param.default_value,
+                                                         optional=True)
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
                 self.addParameter(new_param)
 
@@ -92,7 +93,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Double,
                                                          minValue=0,  # FIXME
-                                                         defaultValue=param.default_value)
+                                                         defaultValue=param.default_value,
+                                                         optional=True)
 
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
                 self.addParameter(new_param)
@@ -105,7 +107,6 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         self.addParameter(QgsProcessingParameterFolderDestination(self.OUTPUT_DIR,
                                                                   self.tr('Output directory'),
                                                                   optional=True))
-
 
 
     def processAlgorithm(self, parameters, context, feedback):
