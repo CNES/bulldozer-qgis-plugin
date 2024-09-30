@@ -72,23 +72,30 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
 
         for param in params:
             if param.param_type == bool:
-                self.addParameter(QgsProcessingParameterBoolean(param.name,
-                                                                param.description,
-                                                                defaultValue=param.default_value))
+                new_param = QgsProcessingParameterBoolean(param.name,
+                                                          param.description,
+                                                          defaultValue=param.default_value)
+                new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
+                self.addParameter(new_param)
 
             elif param.param_type == int:
-                self.addParameter(QgsProcessingParameterNumber(param.name,
-                                                            param.description,
-                                                            type=QgsProcessingParameterNumber.Integer,
-                                                            minValue=0,  # FIXME
-                                                            defaultValue=param.default_value))
+                new_param = QgsProcessingParameterNumber(param.name,
+                                                         param.description,
+                                                         type=QgsProcessingParameterNumber.Integer,
+                                                         minValue=0,  # FIXME
+                                                         defaultValue=param.default_value)
+                new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
+                self.addParameter(new_param)
 
             elif param.param_type == float:
-                self.addParameter(QgsProcessingParameterNumber(param.name,
-                                                            param.description,
-                                                            type=QgsProcessingParameterNumber.Double,
-                                                            minValue=0,  # FIXME
-                                                            defaultValue=param.default_value))
+                new_param = QgsProcessingParameterNumber(param.name,
+                                                         param.description,
+                                                         type=QgsProcessingParameterNumber.Double,
+                                                         minValue=0,  # FIXME
+                                                         defaultValue=param.default_value)
+
+                new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
+                self.addParameter(new_param)
 
             # elif param.param_type == str:
             #     ## FIXME
