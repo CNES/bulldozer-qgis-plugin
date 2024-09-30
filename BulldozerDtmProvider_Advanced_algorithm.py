@@ -49,14 +49,12 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
     OUTPUT = 'OUTPUT'
     INPUT = 'INPUT'
     NB_WORKERS = 'NB_WORKERS'
-    GENERATE_DHM = 'GENERATE_DHM'
-    MAX_OBJECT_WIDTH = 'MAX_OBJECT_WIDTH'
-    OUTPUT_RES = 'OUTPUT_RES'
-    NO_DATA = 'NO_DATA'
-    MIN_VALID_HEIGH = 'MIN_VALID_HEIGH'
-    CHECK_INTERSECTION = 'CHECK_INTERSECTION'
-    DEVELOPPER_MODE = 'DEVELOPPER_MODE'
-    OUTPUT_DIR = 'OUTPUT_DIR'
+
+    def __init__(self):
+        super().__init__()
+        params = get_combined_list_params_for_advanced_app()
+        for param in params:
+            setattr(self, param.name.upper(), param.name.upper())
 
     def initAlgorithm(self, config):
         """
