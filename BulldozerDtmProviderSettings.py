@@ -20,13 +20,6 @@
 # more details.
 
 
-__author__ = 'CNES'
-__date__ = '2023-04-12'
-__copyright__ = '(C) 2023 by CNES'
-# This will get replaced with a git SHA1 when you do a git archive
-__revision__ = '$Format:%H$'
-
-
 class BulldozerDtmProviderSettings(object):
     """
     OtbSetting's key names
