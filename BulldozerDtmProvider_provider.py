@@ -81,7 +81,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         string should be a unique, short, character only string, eg "qgis" or
         "gdal". This string should not be localised.
         """
-        return '3D'
+        return 'Bulldozer'
 
     def name(self):
         """
@@ -90,7 +90,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
 
         This string should be short (e.g. "Lastools") and localised.
         """
-        return self.tr('3D')
+        return self.tr('Bulldozer')
 
     def helpId(self):
         return 'bulldozer'

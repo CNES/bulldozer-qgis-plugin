@@ -198,7 +198,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         """
         Returns the algorithm name, used for identifying the algorithm.
         """
-        return 'Bulldozer (Advanced)'
+        return 'Bulldozer'
 
     def createInstance(self):
         """
