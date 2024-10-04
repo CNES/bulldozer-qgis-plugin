@@ -80,7 +80,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Integer,
                                                          minValue=0,  # FIXME
-                                                         defaultValue=param.default_value,
+                                                         defaultValue=None,
                                                          optional=True)
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
                 self.addParameter(new_param)
@@ -90,7 +90,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Double,
                                                          minValue=0,  # FIXME
-                                                         defaultValue=param.default_value,
+                                                         defaultValue=None,
                                                          optional=True)
 
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
@@ -100,6 +100,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
             #     ## FIXME
             #     self.addParameter(QgsProcessingParameterRasterLayer(param.name,
             #                                                     param.description))
+
 
         self.addParameter(QgsProcessingParameterFolderDestination(self.OUTPUT_DIR,
                                                                   self.tr('Output directory'),
