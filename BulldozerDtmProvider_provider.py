@@ -101,7 +101,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         #return QIcon(icon_path)
         #TODO
 
-        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'atelier3D_-_logo.png'))
+        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'bulldozer_logo.png'))
 
     def longName(self):
         """
