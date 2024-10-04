@@ -48,7 +48,6 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
 
     OUTPUT = 'OUTPUT'
     INPUT = 'INPUT'
-    NB_WORKERS = 'NB_WORKERS'
 
     def __init__(self):
         super().__init__()
@@ -111,71 +110,54 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         """
         Call Bulldozer with full parameters
         """
+        print("\n\n")
+        print("********************")
+        print("parameters", parameters)
+        print("********************")
 
         params = get_combined_list_params_for_advanced_app()
-
-        # for param in params:
 
         params_for_bulldozer = {}
 
         for param in params:
-            print(param)
             param_name = param.name
             param_name_upper = param.name.upper()
+            print(param_name)
 
-            if param.param_type == bool:
-                param_value = self.parameterAsBool(parameters, param_name_upper, context)
-            elif param.param_type == int:
-                param_value = self.parameterAsInt(parameters, param_name_upper, context)
-                if param.default_value is None:
-                    if param_value == 0:
-                        param_value = None
-            elif param.param_type == float:
-                param_value = self.parameterAsDouble(parameters, param_name_upper, context)
-                if param.default_value is None:
-                    if param_value == 0.0:
-                        param_value = None
-            elif param.param_type == str:
-                param_value = self.parameterAsString(parameters, param_name_upper, context)
-            if param_value is None:
-                param_value = param.default_value
+            source = self.parameterAsLayer(parameters, self.INPUT, context).source()
+            params_for_bulldozer["dsm_path"] = source
 
-            if param_value is not None:
-                params_for_bulldozer[param_name] = param_value
+            param_value = None
+            if param_name in parameters and parameters[param_name] is not None:
+                print("++", param_name)
+                if param.param_type == bool:
+                    param_value = self.parameterAsBool(parameters, param_name_upper, context)
+                elif param.param_type == int:
+                    param_value = self.parameterAsInt(parameters, param_name_upper, context)
+                elif param.param_type == float:
+                    param_value = self.parameterAsDouble(parameters, param_name_upper, context)
+                elif param.param_type == str:
+                    param_value = self.parameterAsString(parameters, param_name_upper, context)
+
+                print("param_value", param_value)
+                if param_value is not None:
+                    params_for_bulldozer[param_name] = param_value
+
+            if "output_dir" not in params_for_bulldozer:
+                params_for_bulldozer["output_dir"] = self.parameterAsString(parameters, self.OUTPUT_DIR, context)
 
         params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters,
                                                                  self.INPUT, context).source()
-        # params_for_bulldozer["output_dir"] = self.parameterAsString(parameters,
-        # self.OUTPUT_DIRECTORY, context)
-
-        # source = self.parameterAsLayer(parameters, self.INPUT, context).source()
-        # nb_max_workers = self.parameterAsInt(parameters, self.NB_WORKERS, context)
-        # generate_dhm = self.parameterAsInt(parameters, self.GENERATE_DHM, context)
-        # max_object_width = self.parameterAsInt(parameters, self.MAX_OBJECT_WIDTH, context)
-        # output_resolution = self.parameterAsInt(parameters, self.OUTPUT_RES, context)
-        # no_data = self.parameterAsInt(parameters, self.NO_DATA, context)
-        # min_valid_height = self.parameterAsInt(parameters, self.MIN_VALID_HEIGH, context)
-        # check_intersection = self.parameterAsInt(parameters, self.CHECK_INTERSECTION, context)
-        # developper_mode = self.parameterAsInt(parameters, self.DEVELOPPER_MODE, context)
-        # output_dir = self.parameterAsString(parameters, self.OUTPUT_DIRECTORY, context)
-
         try:
-            # check_params(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers,
-            #        generate_dhm=generate_dhm, max_object_width=max_object_width,
-            #        output_resolution=output_resolution, no_data=no_data,
-            #        min_valid_height=min_valid_height, check_intersection=check_intersection,
-            #        developper_mode=developper_mode)
             check_params(**params_for_bulldozer)
         except BulldozerParameterException as e:
             print(f"#####################{e}####################")
             feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
             raise QgsProcessingException(f"Parameters are not valid : {e}")
 
-        # dsm_to_dtm(dsm_path=source, output_dir=output_dir, nb_max_workers=nb_max_workers,
-        #            generate_dhm=generate_dhm, max_object_width=max_object_width,
-        #            output_resolution=output_resolution, no_data=no_data,
-        #            min_valid_height=min_valid_height, check_intersection=check_intersection,
-        #            developper_mode=developper_mode)
+        print("-----------------")
+        print("params_for_bulldozer", params_for_bulldozer)
+        print("-----------------")
         dsm_to_dtm(**params_for_bulldozer)
 
         output_dir = params_for_bulldozer["output_dir"]
