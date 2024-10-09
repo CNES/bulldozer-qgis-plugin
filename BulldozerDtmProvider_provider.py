@@ -54,13 +54,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         ProcessingConfig.settingIcons[group] = self.icon()
         ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.ACTIVATE,
                                             self.tr('Activate'), True))
-        ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.FOLDER,
-                                            self.tr("Bulldozer venv folder"),
-                                            ProcessingConfig.getSetting(BulldozerDtmProviderSettings.FOLDER),
-                                            valuetype=Setting.FOLDER,
-                                            validator=self.validateBulldozerInstall
-                                            ))
-
         self.addAlgorithm(BulldozerDtmProviderBasicAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderAdvancedAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderConfigFileAlgorithm())

@@ -27,12 +27,8 @@ class BulldozerDtmProviderSettings:
     # Checkbox to enable/disable otb provider (bool).
     ACTIVATE = "BULLDOZER_ACTIVATE"
 
-    # Path to otb installation folder (string, directory).
-    FOLDER = "BULLDOZER_FOLDER"
-
     @staticmethod
     def keys():
         return [
-            BulldozerDtmProviderSettings.ACTIVATE,
-            BulldozerDtmProviderSettings.FOLDER,
+            BulldozerDtmProviderSettings.ACTIVATE
         ]
