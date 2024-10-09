@@ -30,6 +30,8 @@ from .BulldozerDtmProvider_ConfigFile_algorithm import BulldozerDtmProviderConfi
 from .BulldozerDtmProvider_GenerateConfigFile import BulldozerDtmProviderGenerateConfigFile
 from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
 
+# Initialize Qt resources from file resources.py
+from .resources import *
 
 class BulldozerDtmProviderProvider(QgsProcessingProvider):
 
@@ -90,11 +92,8 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         Should return a QIcon which is used for your provider inside
         the Processing toolbox.
         """
-        #icon_path = ':/plugins/bulldozerdtmprovider/bulldozer_logo.png'
-        #return QIcon(icon_path)
-        #TODO
 
-        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'bulldozer_logo.png'))
+        return QIcon(':/plugins/bulldozerdtmprovider/img/bulldozer_logo.png')
 
     def longName(self):
         """

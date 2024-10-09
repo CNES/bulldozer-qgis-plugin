@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/plugins/bulldozerdtmprovider" >
-        <file>bulldozer_logo.png</file>
+        <file>img/bulldozer_logo.png</file>
     </qresource>
 </RCC>

@@ -28,6 +28,9 @@ from qgis.core import QgsProcessingAlgorithm
 
 from .import_bulldozer import dsm_to_dtm
 
+# Initialize Qt resources from file resources.py
+from .resources import *
+
 
 class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
     """
@@ -68,8 +71,7 @@ class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
 
 
     def icon(self):
-        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'bulldozer_logo.png'))
-
+        return QIcon(':/plugins/bulldozerdtmprovider/img/bulldozer_logo.png')
 
     def tags(self):
         return ['3d', 'bulldozer']
