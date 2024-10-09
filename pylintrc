@@ -5,14 +5,18 @@
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-#init-hook=
+init-hook='import sys; sys.path.extend(["/.local/share/qgis/python/plugins", "/usr/share/qgis/python", "/usr/lib/python3/dist-packages/", "./bulldozer-dtm_venv"])'
 
 # Profiled execution.
 profile=no
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=CVS
+ignore=CVS, plugin_upload.py, resources.py, test
+
+# Files or directories matching the regex patterns are skipped. The regex
+# matches against base names, not paths.
+ignore-patterns=test/*
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -56,6 +60,9 @@ files-output=no
 
 # Tells whether to display a full report or only the messages
 reports=yes
+
+# Activate the evaluation score.
+score=yes
 
 # Python expression which should return a note less than 10 (10 is the highest
 # note). You have access to the variables errors warning, statement which
@@ -171,7 +178,7 @@ additional-builtins=
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=80
+max-line-length=100
 
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
@@ -222,6 +229,9 @@ ext-import-graph=
 # Create a graph of internal dependencies in the given file (report RP0402 must
 # not be disabled)
 int-import-graph=
+
+# List of modules that are allowed to have wildcard imports
+extension-pkg-whitelist=PyQt5, qgis
 
 
 [DESIGN]

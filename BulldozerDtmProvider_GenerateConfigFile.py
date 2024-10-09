@@ -20,20 +20,9 @@
 # more details.
 
 
-import os
-from qgis.core import (QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterNumber,
-                       QgsProcessingParameterBoolean,
-                       QgsProcessingParameterFolderDestination,
-                       QgsProcessingParameterFileDestination,
-                       QgsRasterLayer,
-                       QgsProject, QgsProcessingException)
+from qgis.core import QgsProcessingParameterFileDestination
 
-from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
 from .BulldozerDtmProvider_Advanced_algorithm import BulldozerDtmProviderAdvancedAlgorithm
-from .BulldozerDtmProvider_Params import (check_params,
-                                          get_combined_list_params_for_advanced_app,
-                                          BulldozerParameterException)
 
 
 class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAdvancedAlgorithm):
@@ -59,10 +48,6 @@ class BulldozerDtmProviderGenerateConfigFile(BulldozerDtmProviderAdvancedAlgorit
                                                                 self.tr('Config file'),
                                                                 fileFilter='YAML files (*.yaml)')
                           )
-
-        params = get_combined_list_params_for_advanced_app()
-
-
 
     def processAlgorithm(self, parameters, context, feedback):
         """

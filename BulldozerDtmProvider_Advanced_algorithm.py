@@ -21,19 +21,12 @@
 
 
 import os
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterFeatureSink,
-                       QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterNumber,
+from qgis.core import (QgsProcessingParameterNumber,
                        QgsProcessingParameterBoolean,
                        QgsProcessingParameterFolderDestination,
-                       QgsRasterLayer,
-                       QgsProject, QgsProcessingException,
-                       QgsProcessingParameterDefinition)
+                       QgsProcessingException,
+                       QgsProcessingParameterDefinition,
+                       QgsProcessingParameterRasterLayer)
 
 from .import_bulldozer import dsm_to_dtm
 from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
@@ -79,7 +72,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                 new_param = QgsProcessingParameterNumber(param.name,
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Integer,
-                                                         minValue=0,  # FIXME
+                                                         minValue=0,
                                                          defaultValue=None,
                                                          optional=True)
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
@@ -118,14 +111,12 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         for param in params:
             param_name = param.name
             param_name_upper = param.name.upper()
-            print(param_name)
 
             source = self.parameterAsLayer(parameters, self.INPUT, context).source()
             params_for_bulldozer["dsm_path"] = source
 
             param_value = None
             if param_name in parameters and parameters[param_name] is not None:
-                print("++", param_name)
                 if param.param_type == bool:
                     param_value = self.parameterAsBool(parameters, param_name_upper, context)
                 elif param.param_type == int:

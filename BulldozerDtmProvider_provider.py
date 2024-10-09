@@ -19,21 +19,21 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-
-import os
-from qgis.core import QgsProcessingProvider, QgsApplication
+from qgis.core import QgsProcessingProvider
 from qgis.PyQt.QtGui import QIcon
-from .BulldozerDtmProvider_Basic_Algorithm import BulldozerDtmProviderBasicAlgorithm
+from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
+
 from .BulldozerDtmProvider_Advanced_algorithm import BulldozerDtmProviderAdvancedAlgorithm
 from .BulldozerDtmProviderSettings import BulldozerDtmProviderSettings
 from .BulldozerDtmProvider_ConfigFile_algorithm import BulldozerDtmProviderConfigFileAlgorithm
 from .BulldozerDtmProvider_GenerateConfigFile import BulldozerDtmProviderGenerateConfigFile
-from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
 
 # Initialize Qt resources from file resources.py
 from .resources import *
 
+
 class BulldozerDtmProviderProvider(QgsProcessingProvider):
+    """ Provider class for Bulldozer DTM Provider """
 
     def __init__(self):
         """
@@ -46,7 +46,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         Unloads the provider. Any tear-down steps required by the provider
         should be implemented here.
         """
-        pass
 
     def loadAlgorithms(self):
         """
@@ -68,7 +67,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
 
         :return:
         """
-        pass
 
     def id(self):
         """

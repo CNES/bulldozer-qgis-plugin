@@ -19,16 +19,11 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-
-import os
-
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.core import (QgsProcessingAlgorithm,
                        QgsRasterLayer,
                        QgsProject)
-
-from .import_bulldozer import dsm_to_dtm
 
 # Initialize Qt resources from file resources.py
 from .resources import *

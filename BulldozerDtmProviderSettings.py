@@ -24,11 +24,12 @@ class BulldozerDtmProviderSettings:
     """
     Setting's key names
     """
-    # Checkbox to enable/disable otb provider (bool).
+    # Checkbox to enable/disable bulldozer provider (bool).
     ACTIVATE = "BULLDOZER_ACTIVATE"
 
     @staticmethod
     def keys():
+        """ Return the list of settings defined in this class """
         return [
             BulldozerDtmProviderSettings.ACTIVATE
         ]

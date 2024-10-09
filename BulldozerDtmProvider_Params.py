@@ -58,23 +58,17 @@ def get_from_params_base(param_name, list_param_objects):
     res_temp = [param for param in list_param_objects if param.name == param_name]
     if len(res_temp) == 1:
         return res_temp[0]
-    elif len(res_temp) == 0:
+    if len(res_temp) == 0:
         message = f"Parameter not found in the parameters dictionary:{param_name}"
         raise BulldozerParameterException(message)
-    else:
-        raise BulldozerParameterException("Multiple parameters found in the parameters dictionary")
+
+    raise BulldozerParameterException("Multiple parameters found in the parameters dictionary")
 
 
 
 def check_params(*args, **kwargs):
     """ Check given parameters
     """
-
-    print("*******************")
-    print("Check params")
-    print(args)
-    print(kwargs)
-
     params_baseline = get_combined_list_params()
 
     # pour chaque parametre de la fonction, récuprérer le paramètre correspondant
@@ -84,7 +78,6 @@ def check_params(*args, **kwargs):
             if not isinstance(value, str):
                 raise BulldozerParameterException(f"Parameter {key} should be a string")
             continue
-        print(key, value)
         param_obj = get_from_params_base(key, params_baseline)
 
         if param_obj.param_type == str:
@@ -101,25 +94,23 @@ def check_params(*args, **kwargs):
             if not isinstance(value, float):
                 try:
                     float(value)
-                except ValueError:
-                    raise BulldozerParameterException(f"Parameter {key} should be a float")
+                except ValueError as e:
+                    raise BulldozerParameterException(f"Parameter {key} should be a float") from e
         elif param_obj.param_type == bool:
             if not isinstance(value, bool):
                 try:
                     bool(value)
-                except ValueError:
-                    raise BulldozerParameterException(f"Parameter {key} should be a boolean")
+                except ValueError as e:
+                    raise BulldozerParameterException(f"Parameter {key} should be a boolean") from e
         else:
             raise BulldozerParameterException(f"Parameter {key} has an unknown type")
 
         if key == "output_dir":
             if "processing_" in value:
                 continue
-            elif not os.path.isdir(value):
+            if not os.path.isdir(value):
                 raise BulldozerParameterException(f"Output directory {value} does not exist")
 
         if key == "dsm_path":
             if not os.path.isfile(value):
                 raise BulldozerParameterException(f"DSM file {value} does not exist")
-
-    print("*******************")
