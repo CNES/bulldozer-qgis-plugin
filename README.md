@@ -12,21 +12,6 @@
 </div>
 
 ---
-
-<p align="center">
-  <a href="#overview">Overview</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quickstart">Quick Start</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#contribute">Contribute</a> •
-  <a href="#troubleshooting">Troubleshooting</a> •
-  <a href="#licence">Licence</a> •
-  <a href="#credits">Credits</a>
-</p>
-
-</div>
-
----
 ## Overview
 
 <div align="center">
@@ -34,7 +19,7 @@
 </div>
 
 
-The Bulldozer QGIS Processing provider is designed to enhance digital terrain modeling within QGIS.
+The Bulldozer QGIS Processing provider is designed to extract Digital Terrain Model (DTM) from raster format Digital Surface Model (DSM) using[Bulldozer](https://github.com/CNES/bulldozer).
 It integrates seamlessly with QGIS's Processing framework, offering three main algorithms to cater to different user needs:
 
 1. **Basic Algorithm**: Provides a simple setup with an input DTM and an output folder.
@@ -48,7 +33,6 @@ It integrates seamlessly with QGIS's Processing framework, offering three main a
 
 #### Prerequisites
 - QGIS version 3.0 or higher
-- internet access
 
 #### Installation Steps
 You can install the plugin directly from within QGIS:
@@ -59,7 +43,7 @@ You can install the plugin directly from within QGIS:
 
 #### Alternative Installation
 You can also install the plugin manually:
-1. **Download**: Download the latest version of the plugin from the [QGIS Plugin Hub](https://plugins.qgis.org/) or [Gitlab repository](https://gitlab.cnes.fr/3d/tools/bulldozer-qgis-plugin).
+1. **Download**: Download the latest version of the plugin from the [QGIS Plugin Hub](https://plugins.qgis.org/) or [Github repository](https://github.com/CNES/bulldozer-qgis-plugin).
 2. **Install**: Copy the plugin files into your QGIS plugin directory, typically located at:
    - Windows: `C:\Users\[username]\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\`
    - Linux: `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
@@ -69,6 +53,7 @@ You can also install the plugin manually:
 
 ### Running Algorithms
 
+<!---TODO : update this part-->
 All the algorithms can be accessed through the QGIS Processing Toolbox under `3D/Rater`. Search for "Bulldozer" to find the algorithms.
 
 1. **Basic Algorithm**:
@@ -83,29 +68,24 @@ All the algorithms can be accessed through the QGIS Processing Toolbox under `3D
 
 ## Documentation
 
-* Bulldozer can be found [here](https://github.com/CNES/bulldozer)
-* Go to **Bulldozer** [main documentation](https://bulldozer.readthedocs.io/?badge=latest) for more information
+* **Bulldozer** [main documentation](https://bulldozer.readthedocs.io/?badge=latest)
 * [Developper guide](docs/README.md)
-
-
-## Contribute
-
-To do a bug report or a contribution, see the [**Contribution Guide**](CONTRIBUTING.md).
-for any help or suggestion, feel free to contact the authors:
-
-### !!! TBD FIXME
-
-
-## Troubleshooting
-For common issues and their solutions, visit the [Issues section of our Gitlab repository](https://gitlab.cnes.fr/3d/tools/bulldozer-qgis-plugin/-/issues).
-
 ## License
-The **Bulldozer plugin** is released under GPL V2. For details, see the **Bulldozer** [LICENSE](LICENSE) file in the repository.
 
-## Credits
+The **Bulldozer QGIS plugin** is released under GPL V2. For details, see the [LICENSE](LICENSE) file in the repository.
+**Bulldozer** is licensed under Apache License v2.0. Please refer to the [LICENSE](https://github.com/CNES/bulldozer/blob/master/LICENSE) file for more details.
 
-Please refer to the [Authors file](AUTHORS.md).
-
-## Reference
-
- [D. Lallement, P. Lassalle, Y. Ott, R. Demortier, and J. Delvit, 2022. BULLDOZER: AN AUTOMATIC SELF-DRIVEN LARGE SCALE DTM EXTRACTION METHOD FROM DIGITAL SURFACE MODEL. ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences.](https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLIII-B2-2022/409/2022/)
+## <a name="Citation"></a>Citation
+If you use **Bulldozer** in your research, please cite the following paper:
+```text
+@article{bulldozer2023,
+  title={Bulldozer, a free open source scalable software for DTM extraction},
+  author={Dimitri, Lallement and Pierre, Lassalle and Yannick, Ott},
+  journal = {The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences},
+  volume = {XLVIII-4/W7-2023},
+  year = {2023},
+  pages = {89--94},
+  url = {https://isprs-archives.copernicus.org/articles/XLVIII-4-W7-2023/89/2023/},
+  doi = {10.5194/isprs-archives-XLVIII-4-W7-2023-89-2023}
+}
+```

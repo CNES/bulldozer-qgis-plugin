@@ -1,21 +1,14 @@
 # Credits
 
-Copyright (c) 2024 Centre National d'Etudes Spatiales (CNES).
+Copyright (c) 2022-2025 Centre National d'Etudes Spatiales (CNES).
 
-BULLDOZER is licensed under GPL V2 license (See LICENSE file).
+BULLDOZER QGIS PLUGIN is licensed under GPL V2 license (See [LICENSE](LICENSE) file).
 The copyright is kept CNES only for long term maintenance ease.
 
-See CONTRIBUTING.md for more details on Contributor License Agrement.
-
-This file keeps track of authors contributions.
-
-
+If you want to contribute, please refers to [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Development Team
 
-* Alexia Mondot <alexia.mondot@thalesgroup.com>
-* Dimitri Lallement <dimitri.lallement@cnes.fr>
+* [Alexia Mondot](mailto:alexia.mondot@thalesgroup.com) - QGIS plugin developer
+* [Dimitri Lallement](mailto:dimitri.lallement@cnes.fr) - current maintainer
 
 
-Update here with new contributors.
-
-See [README References](README.md#documentation)
