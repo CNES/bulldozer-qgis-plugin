@@ -24,13 +24,8 @@ import os
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessing,
                        QgsFeatureSink,
-                       QgsProcessingAlgorithm,
                        QgsProcessingParameterFile,
-                       QgsProcessingParameterFeatureSink,
-                       QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterNumber,
-                       QgsRasterLayer,
-                       QgsProject, QgsProcessingException)
+                       QgsProcessingException)
 
 from bulldozer.utils.config_parser import ConfigParser
 from .import_bulldozer import dsm_to_dtm
@@ -67,8 +62,7 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
             check_params(config_path=source)
         except BulldozerParameterException as e:
             feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
-            raise QgsProcessingException(f"Parameters are not valid : {e}")
-
+            raise QgsProcessingException(f"Parameters are not valid : {e}") from e
 
         dsm_to_dtm(config_path=source)
 
@@ -78,19 +72,6 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
 
         self.OUTPUT = os.path.join(output_dir, "DTM.tif")
         return {self.OUTPUT: os.path.join(output_dir, "DTM.tif")}
-
-    def postProcessAlgorithm(self, context, feedback):
-        """
-        Add the DTM to the map
-        """
-        rlayer = QgsRasterLayer(self.OUTPUT, "DTM")
-
-        if not rlayer.isValid():
-            print("Layer failed to load!")
-
-        QgsProject.instance().addMapLayer(rlayer)
-
-        return {self.OUTPUT: self.OUTPUT}
 
     def name(self):
         """

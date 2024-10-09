@@ -20,26 +20,16 @@
 # more details.
 
 
-__author__ = 'CNES'
-__date__ = '2023-04-12'
-__copyright__ = '(C) 2023 by CNES'
-# This will get replaced with a git SHA1 when you do a git archive
-__revision__ = '$Format:%H$'
-
-
-class BulldozerDtmProviderSettings(object):
+class BulldozerDtmProviderSettings:
     """
-    OtbSetting's key names
+    Setting's key names
     """
-    # Checkbox to enable/disable otb provider (bool).
+    # Checkbox to enable/disable bulldozer provider (bool).
     ACTIVATE = "BULLDOZER_ACTIVATE"
-
-    # Path to otb installation folder (string, directory).
-    FOLDER = "BULLDOZER_FOLDER"
 
     @staticmethod
     def keys():
+        """ Return the list of settings defined in this class """
         return [
-            BulldozerDtmProviderSettings.ACTIVATE,
-            BulldozerDtmProviderSettings.FOLDER,
+            BulldozerDtmProviderSettings.ACTIVATE
         ]

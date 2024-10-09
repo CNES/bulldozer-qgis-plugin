@@ -19,26 +19,21 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-__author__ = 'CNES'
-__date__ = '2023-04-17'
-__copyright__ = '(C) 2023 by CNES'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
-
-import os
-from qgis.core import QgsProcessingProvider, QgsApplication
+from qgis.core import QgsProcessingProvider
 from qgis.PyQt.QtGui import QIcon
-from .BulldozerDtmProvider_Basic_Algorithm import BulldozerDtmProviderBasicAlgorithm
+from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
+
 from .BulldozerDtmProvider_Advanced_algorithm import BulldozerDtmProviderAdvancedAlgorithm
 from .BulldozerDtmProviderSettings import BulldozerDtmProviderSettings
 from .BulldozerDtmProvider_ConfigFile_algorithm import BulldozerDtmProviderConfigFileAlgorithm
 from .BulldozerDtmProvider_GenerateConfigFile import BulldozerDtmProviderGenerateConfigFile
-from processing.core.ProcessingConfig import (ProcessingConfig, Setting)
+
+# Initialize Qt resources from file resources.py
+from .resources import *
 
 
 class BulldozerDtmProviderProvider(QgsProcessingProvider):
+    """ Provider class for Bulldozer DTM Provider """
 
     def __init__(self):
         """
@@ -51,7 +46,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         Unloads the provider. Any tear-down steps required by the provider
         should be implemented here.
         """
-        pass
 
     def loadAlgorithms(self):
         """
@@ -61,14 +55,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         ProcessingConfig.settingIcons[group] = self.icon()
         ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.ACTIVATE,
                                             self.tr('Activate'), True))
-        ProcessingConfig.addSetting(Setting(group, BulldozerDtmProviderSettings.FOLDER,
-                                            self.tr("Bulldozer venv folder"),
-                                            ProcessingConfig.getSetting(BulldozerDtmProviderSettings.FOLDER),
-                                            valuetype=Setting.FOLDER,
-                                            validator=self.validateBulldozerInstall
-                                            ))
 
-        self.addAlgorithm(BulldozerDtmProviderBasicAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderAdvancedAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderConfigFileAlgorithm())
         self.addAlgorithm(BulldozerDtmProviderGenerateConfigFile())
@@ -80,7 +67,6 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
 
         :return:
         """
-        pass
 
     def id(self):
         """
@@ -88,7 +74,7 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
         string should be a unique, short, character only string, eg "qgis" or
         "gdal". This string should not be localised.
         """
-        return '3D'
+        return 'Bulldozer'
 
     def name(self):
         """
@@ -97,21 +83,15 @@ class BulldozerDtmProviderProvider(QgsProcessingProvider):
 
         This string should be short (e.g. "Lastools") and localised.
         """
-        return self.tr('3D')
-
-    def helpId(self):
-        return 'bulldozer'
+        return self.tr('Bulldozer')
 
     def icon(self):
         """
         Should return a QIcon which is used for your provider inside
         the Processing toolbox.
         """
-        #icon_path = ':/plugins/bulldozerdtmprovider/bulldozer_logo.png'
-        #return QIcon(icon_path)
-        #TODO
 
-        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'atelier3D_-_logo.png'))
+        return QIcon(':/plugins/bulldozerdtmprovider/img/bulldozer_logo.png')
 
     def longName(self):
         """

@@ -19,19 +19,12 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-__author__ = 'CNES'
-__date__ = '2023-04-17'
-__copyright__ = '(C) 2023 by CNES'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
 
 import os
 import sys
 import inspect
 
-from qgis.core import QgsProcessingAlgorithm, QgsApplication
+from qgis.core import QgsApplication
 from .BulldozerDtmProvider_provider import BulldozerDtmProviderProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
@@ -40,7 +33,8 @@ if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)
 
 
-class BulldozerDtmProviderPlugin(object):
+class BulldozerDtmProviderPlugin:
+    """ Bulldozer DTM Provider Plugin Definition """
 
     def __init__(self):
         self.provider = None
@@ -51,7 +45,9 @@ class BulldozerDtmProviderPlugin(object):
         QgsApplication.processingRegistry().addProvider(self.provider)
 
     def initGui(self):
+        """ Init the plugin interface """
         self.initProcessing()
 
     def unload(self):
+        """ Unload the plugin """
         QgsApplication.processingRegistry().removeProvider(self.provider)

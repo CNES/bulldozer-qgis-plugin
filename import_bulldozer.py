@@ -46,11 +46,13 @@ except ImportError:
             from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
         except (ImportError, ModuleNotFoundError):
 
-            print("Can't import bulldozer from new installation in bulldozer-dtm, trying force it...")
+            print("Can't import bulldozer from new installation in bulldozer-dtm, "
+                  "trying force it...")
             import importlib.util
 
-            spec = importlib.util.spec_from_file_location("bulldozer", os.path.join(venv_folder,
-                                                                                    "bulldozer/__init__.py"))
+            spec = importlib.util.spec_from_file_location("bulldozer",
+                                                          os.path.join(venv_folder,
+                                                                       "bulldozer/__init__.py"))
             foo = importlib.util.module_from_spec(spec)
             sys.modules["bulldozer"] = foo
             spec.loader.exec_module(foo)

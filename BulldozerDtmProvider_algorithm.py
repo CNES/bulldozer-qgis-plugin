@@ -19,30 +19,14 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-__author__ = 'CNES'
-__date__ = '2023-04-17'
-__copyright__ = '(C) 2023 by CNES'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
-
-import os
-
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterFeatureSink,
-                       QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterNumber,
-                       QgsProcessingParameterFolderDestination,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsRasterLayer,
                        QgsProject)
 
-from .import_bulldozer import dsm_to_dtm
+# Initialize Qt resources from file resources.py
+from .resources import *
 
 
 class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
@@ -73,16 +57,6 @@ class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
         """
         return self.tr(self.groupId())
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
-        return 'Raster'
-
     def tr(self, string, context=''):
         if context == '':
             context = self.__class__.__name__
@@ -94,8 +68,7 @@ class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
 
 
     def icon(self):
-        return QIcon(os.path.join(os.path.dirname(__file__), 'img', 'bulldozer_logo.png'))
-
+        return QIcon(':/plugins/bulldozerdtmprovider/img/bulldozer_logo.png')
 
     def tags(self):
         return ['3d', 'bulldozer']
@@ -133,3 +106,16 @@ https://gitlab.cnes.fr/3d/bulldozer/-/tree/master#notebooks
         .. seealso:: :py:func:`shortHelpString`
         """
         return "https://gitlab.cnes.fr/3d/bulldozer/-/blob/master/docs/notebooks/0_bulldozer_pipeline.ipynb"
+
+    def postProcessAlgorithm(self, context, feedback):
+        """
+        Add the DTM to the map
+        """
+        rlayer = QgsRasterLayer(self.OUTPUT, "DTM")
+
+        if not rlayer.isValid():
+            print("Layer failed to load!")
+
+        QgsProject.instance().addMapLayer(rlayer)
+
+        return {self.OUTPUT: self.OUTPUT}
