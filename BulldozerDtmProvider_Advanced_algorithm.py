@@ -107,15 +107,10 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                                   optional=True))
 
 
-    def processAlgorithm(self, parameters, context, feedback):
+    def get_params_for_bulldozer(self, parameters, context, feedback):
         """
-        Call Bulldozer with full parameters
+        Get the parameters for Bulldozer
         """
-        print("\n\n")
-        print("********************")
-        print("parameters", parameters)
-        print("********************")
-
         params = get_combined_list_params_for_advanced_app()
 
         params_for_bulldozer = {}
@@ -140,44 +135,39 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                 elif param.param_type == str:
                     param_value = self.parameterAsString(parameters, param_name_upper, context)
 
-                print("param_value", param_value)
                 if param_value is not None:
                     params_for_bulldozer[param_name] = param_value
 
             if "output_dir" not in params_for_bulldozer:
-                params_for_bulldozer["output_dir"] = self.parameterAsString(parameters, self.OUTPUT_DIR, context)
+                params_for_bulldozer["output_dir"] = self.parameterAsString(parameters,
+                                                                            self.OUTPUT_DIR,
+                                                                            context)
 
         params_for_bulldozer["dsm_path"] = self.parameterAsLayer(parameters,
                                                                  self.INPUT, context).source()
+
         try:
             check_params(**params_for_bulldozer)
         except BulldozerParameterException as e:
             print(f"#####################{e}####################")
             feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
-            raise QgsProcessingException(f"Parameters are not valid : {e}")
+            raise QgsProcessingException(f"Parameters are not valid : {e}") from e
 
-        print("-----------------")
-        print("params_for_bulldozer", params_for_bulldozer)
-        print("-----------------")
+        return params_for_bulldozer
+
+
+    def processAlgorithm(self, parameters, context, feedback):
+        """
+        Call Bulldozer with full parameters
+        """
+        params_for_bulldozer = self.get_params_for_bulldozer(parameters, context, feedback)
+
         dsm_to_dtm(**params_for_bulldozer)
 
         output_dir = params_for_bulldozer["output_dir"]
 
         self.OUTPUT = os.path.join(output_dir, "DTM.tif")
         return {self.OUTPUT: os.path.join(output_dir, "DTM.tif")}
-
-    def postProcessAlgorithm(self, context, feedback):
-        """
-        Add the DTM to the map
-        """
-        rlayer = QgsRasterLayer(self.OUTPUT, "DTM")
-
-        if not rlayer.isValid():
-            print("Layer failed to load!")
-
-        QgsProject.instance().addMapLayer(rlayer)
-
-        return {self.OUTPUT: self.OUTPUT}
 
     def name(self):
         """

@@ -79,19 +79,6 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
         self.OUTPUT = os.path.join(output_dir, "DTM.tif")
         return {self.OUTPUT: os.path.join(output_dir, "DTM.tif")}
 
-    def postProcessAlgorithm(self, context, feedback):
-        """
-        Add the DTM to the map
-        """
-        rlayer = QgsRasterLayer(self.OUTPUT, "DTM")
-
-        if not rlayer.isValid():
-            print("Layer failed to load!")
-
-        QgsProject.instance().addMapLayer(rlayer)
-
-        return {self.OUTPUT: self.OUTPUT}
-
     def name(self):
         """
         Returns the algorithm name, used for identifying the algorithm.

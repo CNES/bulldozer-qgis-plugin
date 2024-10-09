@@ -24,7 +24,9 @@ import os
 
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import QgsProcessingAlgorithm
+from qgis.core import (QgsProcessingAlgorithm,
+                       QgsRasterLayer,
+                       QgsProject)
 
 from .import_bulldozer import dsm_to_dtm
 
@@ -109,3 +111,16 @@ https://gitlab.cnes.fr/3d/bulldozer/-/tree/master#notebooks
         .. seealso:: :py:func:`shortHelpString`
         """
         return "https://gitlab.cnes.fr/3d/bulldozer/-/blob/master/docs/notebooks/0_bulldozer_pipeline.ipynb"
+
+    def postProcessAlgorithm(self, context, feedback):
+        """
+        Add the DTM to the map
+        """
+        rlayer = QgsRasterLayer(self.OUTPUT, "DTM")
+
+        if not rlayer.isValid():
+            print("Layer failed to load!")
+
+        QgsProject.instance().addMapLayer(rlayer)
+
+        return {self.OUTPUT: self.OUTPUT}
