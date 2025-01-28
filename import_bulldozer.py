@@ -19,11 +19,11 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
+import importlib
 import os
+import subprocess
 import sys
 import pip
-import importlib
-from pathlib import Path
 
 
 def setup_bulldozer():
@@ -33,7 +33,11 @@ def setup_bulldozer():
     except ImportError:
         print("Bulldozer not found in current python path, trying to find it...")
         venv_folder = os.path.join(os.path.dirname(__file__), "bulldozer-dtm_venv")
-        os.environ["PATH"] += f":{os.path.join(venv_folder, 'local', 'bin')}"
+
+        scripts_folder = os.path.join(venv_folder, "Scripts" if os.name == "nt" else "local/bin")
+
+        # Ajouter le dossier venv au PATH et à sys.path
+        os.environ["PATH"] += os.pathsep + scripts_folder
 
         # Ajouter le chemin au sys.path si nécessaire
         if venv_folder not in sys.path:
@@ -47,10 +51,28 @@ def setup_bulldozer():
 
             print("Bulldozer not found in bulldozer-dtm subdir, trying to install it...")
             os.makedirs(venv_folder, exist_ok=True)
-            pip.main(["install", "--target", venv_folder, "bulldozer-dtm"])
+
+
+            python_executable = os.path.join(sys.prefix, "python.exe") if os.name == "nt" else "python"
+            if os.name == "nt":
+
+                subprocess.check_call([
+                    python_executable,
+                    "-m",
+                    "pip",
+                    "install",
+                    "--target",
+                    venv_folder,
+                    "bulldozer-dtm"
+                ])
+
+            else:
+                pip.main(["install", "--target", venv_folder, "bulldozer-dtm"])
 
             # Forcer le rechargement des modules
             importlib.invalidate_caches()
+            if "bulldozer" in sys.modules:
+                del sys.modules["bulldozer"]
             sys.path.insert(0, venv_folder)
 
             try:
