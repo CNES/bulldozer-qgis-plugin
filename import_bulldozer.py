@@ -41,6 +41,7 @@ def setup_bulldozer():
 
         try:
             from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+            print("Import Bulldozer-dtm OK")
             return dsm_to_dtm
         except (ImportError, ModuleNotFoundError):
 
@@ -54,6 +55,7 @@ def setup_bulldozer():
 
             try:
                 from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+                print("Import Bulldozer-dtm OK")
                 return dsm_to_dtm
             except (ImportError, ModuleNotFoundError):
 
@@ -61,18 +63,23 @@ def setup_bulldozer():
                     "trying force it...")
 
                 spec = importlib.util.spec_from_file_location("bulldozer",
-                                                            os.path.join(venv_folder,
-                                                                        "bulldozer/__init__.py"))
+                                                              os.path.join(venv_folder,
+                                                                           "bulldozer",
+                                                                           "__init__.py"))
                 foo = importlib.util.module_from_spec(spec)
                 sys.modules["bulldozer"] = foo
 
                 # Forcer le rechargement des modules
                 importlib.invalidate_caches()
                 spec.loader.exec_module(foo)
-                import bulldozer
-                from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
-                print("Import Bulldozer-dtm OK")
-                return dsm_to_dtm
+                try:
+                    import bulldozer
+                    from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+                    print("Import Bulldozer-dtm OK")
+                    return dsm_to_dtm
+                except ImportError:
+                    print("Failed to import Bulldozer even after installation.")
+                    raise
 
 # Initialiser Bulldozer
 dsm_to_dtm = setup_bulldozer()
