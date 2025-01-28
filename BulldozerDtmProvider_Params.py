@@ -22,7 +22,7 @@
 
 import os
 
-from .bulldozer_parameters import bulldozer_pipeline_params
+from bulldozer.pipeline.bulldozer_parameters import bulldozer_pipeline_params
 
 
 class BulldozerParameterException(Exception):
