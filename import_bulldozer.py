@@ -19,53 +19,60 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
-import os.path
+import os
 import sys
 import pip
 import importlib
 from pathlib import Path
 
 
-try:
-    from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
-except ImportError:
-    print("Bulldozer not found in current python path, trying to find it...")
-    venv_folder = os.path.join(os.path.dirname(__file__), "bulldozer-dtm_venv")
-    os.environ["PATH"] += f":{os.path.join(venv_folder, 'local', 'bin')}"
-
-    # Ajouter le chemin au sys.path si nécessaire
-    if venv_folder not in sys.path:
-        sys.path.insert(0, venv_folder)
-
+def setup_bulldozer():
     try:
         from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
-    except (ImportError, ModuleNotFoundError):
+        return dsm_to_dtm
+    except ImportError:
+        print("Bulldozer not found in current python path, trying to find it...")
+        venv_folder = os.path.join(os.path.dirname(__file__), "bulldozer-dtm_venv")
+        os.environ["PATH"] += f":{os.path.join(venv_folder, 'local', 'bin')}"
 
-        print("Bulldozer not found in bulldozer-dtm subdir, trying to install it...")
-        os.makedirs(venv_folder, exist_ok=True)
-        pip.main(["install", "--target", venv_folder, "bulldozer-dtm"])
-
-        # Forcer le rechargement des modules
-        importlib.invalidate_caches()
-        sys.path.insert(0, venv_folder)
+        # Ajouter le chemin au sys.path si nécessaire
+        if venv_folder not in sys.path:
+            sys.path.insert(0, venv_folder)
 
         try:
             from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+            return dsm_to_dtm
         except (ImportError, ModuleNotFoundError):
 
-            print("Can't import bulldozer from new installation in bulldozer-dtm, "
-                  "trying force it...")
-            import importlib.util
-
-            spec = importlib.util.spec_from_file_location("bulldozer",
-                                                          os.path.join(venv_folder,
-                                                                       "bulldozer/__init__.py"))
-            foo = importlib.util.module_from_spec(spec)
-            sys.modules["bulldozer"] = foo
+            print("Bulldozer not found in bulldozer-dtm subdir, trying to install it...")
+            os.makedirs(venv_folder, exist_ok=True)
+            pip.main(["install", "--target", venv_folder, "bulldozer-dtm"])
 
             # Forcer le rechargement des modules
             importlib.invalidate_caches()
-            spec.loader.exec_module(foo)
-            import bulldozer
-            from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
-            print("Import Bulldozer-dtm OK")
+            sys.path.insert(0, venv_folder)
+
+            try:
+                from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+                return dsm_to_dtm
+            except (ImportError, ModuleNotFoundError):
+
+                print("Can't import bulldozer from new installation in bulldozer-dtm, "
+                    "trying force it...")
+
+                spec = importlib.util.spec_from_file_location("bulldozer",
+                                                            os.path.join(venv_folder,
+                                                                        "bulldozer/__init__.py"))
+                foo = importlib.util.module_from_spec(spec)
+                sys.modules["bulldozer"] = foo
+
+                # Forcer le rechargement des modules
+                importlib.invalidate_caches()
+                spec.loader.exec_module(foo)
+                import bulldozer
+                from bulldozer.pipeline.bulldozer_pipeline import dsm_to_dtm
+                print("Import Bulldozer-dtm OK")
+                return dsm_to_dtm
+
+# Initialiser Bulldozer
+dsm_to_dtm = setup_bulldozer()
