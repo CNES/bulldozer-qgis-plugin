@@ -70,8 +70,8 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
         input_params = parser.read(source)
         output_dir=input_params['output_dir']
 
-        self.OUTPUT = os.path.join(output_dir, "DTM.tif")
-        return {self.OUTPUT: os.path.join(output_dir, "DTM.tif")}
+        self.OUTPUT = os.path.join(output_dir, "dtm.tif")
+        return {self.OUTPUT: os.path.join(output_dir, "dtm.tif")}
 
     def name(self):
         """

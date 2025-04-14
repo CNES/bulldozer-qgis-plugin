@@ -157,8 +157,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
 
         output_dir = params_for_bulldozer["output_dir"]
 
-        self.OUTPUT = os.path.join(output_dir, "DTM.tif")
-        return {self.OUTPUT: os.path.join(output_dir, "DTM.tif")}
+        self.OUTPUT = os.path.join(output_dir, "dtm.tif")
+        return {self.OUTPUT: os.path.join(output_dir, "dtm.tif")}
 
     def name(self):
         """
