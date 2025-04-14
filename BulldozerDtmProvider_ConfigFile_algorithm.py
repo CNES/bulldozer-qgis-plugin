@@ -58,12 +58,6 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
 
         source = self.parameterAsString(parameters, self.INPUT, context)
 
-        try:
-            check_params(config_path=source)
-        except BulldozerParameterException as e:
-            feedback.reportError(f"Parameters are not valid : {e}", fatalError=True)
-            raise QgsProcessingException(f"Parameters are not valid : {e}") from e
-
         dsm_to_dtm(config_path=source)
 
         parser = ConfigParser(False)
