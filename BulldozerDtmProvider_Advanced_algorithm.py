@@ -73,7 +73,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Integer,
                                                          minValue=0,
-                                                         defaultValue=None,
+                                                         defaultValue=param.default_value,
                                                          optional=True)
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
                 self.addParameter(new_param)
@@ -83,7 +83,7 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
                                                          param.description,
                                                          type=QgsProcessingParameterNumber.Double,
                                                          minValue=0,  # FIXME
-                                                         defaultValue=None,
+                                                         defaultValue=param.default_value,
                                                          optional=True)
 
                 new_param.setFlags(new_param.flags() | QgsProcessingParameterDefinition.FlagAdvanced)
