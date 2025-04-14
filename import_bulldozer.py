@@ -54,6 +54,7 @@ def setup_bulldozer():
 
 
             python_executable = os.path.join(sys.prefix, "python.exe") if os.name == "nt" else "python"
+            # nt = windows
             if os.name == "nt":
 
                 subprocess.check_call([
