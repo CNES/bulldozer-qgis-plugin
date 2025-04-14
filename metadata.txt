@@ -6,7 +6,8 @@ version=1.0.0
 author=CNES
 about=This plugin allows you to extract a Digital Terrain Model (DTM) from a raster format Digital Surface Model (DSM). It is based on the Bulldozer tool developed at CNES (French space agency).
 tracker=https://github.com/CNES/bulldozer-qgis-plugin/issues
-repository= https://github.com/CNES/bulldozer-qgis-plugin/
+repository=https://github.com/CNES/bulldozer-qgis-plugin/
+email=cars@cnes.fr
 
 # Recommended items:
 hasProcessingProvider=yes
