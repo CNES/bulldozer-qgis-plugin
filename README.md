@@ -57,13 +57,13 @@ You can also install the plugin manually:
 All the algorithms can be accessed through the QGIS Processing Toolbox under `3D/Rater`. Search for "Bulldozer" to find the algorithms.
 
 1. **Basic Algorithm**:
-   - Inputs: DTM file path, output folder path.
+   - Inputs: DTM file path, output folder path and detailed parameters as specified in the advanced settings.
 
 2. **Config File Algorithm**:
    - Inputs: Path to configuration file.
 
-3. **Advanced Algorithm**:
-   - Inputs: Detailed parameters as specified in the advanced settings.
+3. **Generate Config file**:
+   - Inputs: Detailed parameters as specified in the advanced settings. Output : config yaml file.
 
 
 ## Documentation

@@ -31,14 +31,6 @@ from .resources import *
 
 class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
     All Processing algorithms should extend the QgsProcessingAlgorithm
     class.
     """
@@ -75,25 +67,13 @@ class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
 
 
     def shortHelpString(self):
-        return self.tr("""Bulldozer is designed as a pipeline of standalone functions that aims to extract a Digital Terrain Model (DTM) from a Digital Surface Model (DSM).
-But you can also use one of the following function without running the full pipeline:
+        return self.tr("""Bulldozer is a pipeline designed to extract a Digital Terrain Model (DTM) from a Digital Surface Model (DSM). It supports both noisy satellite DSMs and high-quality LiDAR DSMs. It relies on a morphological approach.
 
-DSM preprocessing
-- Nodata extraction: a group of methods to differentiate and extract nodata related to failed correlations during the DSM computation and those of the image border
-- Disturbed areas detection: a method to locate disturbed areas. These noisy areas are mainly related to areas in which the correlator has incorrectly estimated the elevation (water or shadow areas).
+Bulldozer is licensed under Apache License v2.0.
 
+You can find more information in the documentation: https://bulldozer.readthedocs.io/
 
-DTM extraction
-- DTM computation: the main method that extracts the DTM from the preprocessed DSM.
-
-
-DTM postprocessing
-- Pits detection: a method to detect pits in the provided raster and return the corresponding mask.
-- Pits filling: a method to fill pits in the generated DTM (or input raster).
-- DHM computation: a method to extract the Digital Height Model (DHM).
-
-For more information about these functions and how to call them, please refer to the notebook documentation section.
-https://gitlab.cnes.fr/3d/bulldozer/-/tree/master#notebooks
+If you want to contribute or report an issue in the plugin, here is the repository link: https://github.com/CNES/bulldozer-qgis-plugin
 """)
 
     def helpUrl(self):  # real signature unknown; restored from __doc__
@@ -105,7 +85,7 @@ https://gitlab.cnes.fr/3d/bulldozer/-/tree/master#notebooks
 
         .. seealso:: :py:func:`shortHelpString`
         """
-        return "https://gitlab.cnes.fr/3d/bulldozer/-/blob/master/docs/notebooks/0_bulldozer_pipeline.ipynb"
+        return "https://bulldozer.readthedocs.io/"
 
     def postProcessAlgorithm(self, context, feedback):
         """
