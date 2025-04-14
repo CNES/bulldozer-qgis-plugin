@@ -1,6 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/CNES/bulldozer/master/docs/source/images/logo.png" width=256>
-
+    <img src="https://raw.githubusercontent.com/CNES/bulldozer/master/docs/source/images/logo_with_text.png" width=600>
 
 **Bulldozer, a DTM extraction tool requiring only a DSM as input.**
 
@@ -19,7 +18,7 @@
 </div>
 
 
-The Bulldozer QGIS Processing provider is designed to extract Digital Terrain Model (DTM) from raster format Digital Surface Model (DSM) using[Bulldozer](https://github.com/CNES/bulldozer).
+The Bulldozer QGIS Processing provider is designed to extract Digital Terrain Model (DTM) from raster format Digital Surface Model (DSM) using [Bulldozer](https://github.com/CNES/bulldozer).
 It integrates seamlessly with QGIS's Processing framework, offering three main algorithms to cater to different user needs:
 
 1. **Basic Algorithm**: Provides a simple setup with an input DTM and an output folder.
@@ -35,7 +34,7 @@ It integrates seamlessly with QGIS's Processing framework, offering three main a
 - QGIS version 3.0 or higher
 
 #### Installation Steps
-You can install the plugin directly from within QGIS:
+You can install the plugin directly within QGIS:
   1. Go to `Plugins > Manage and Install Plugins`.
   2. Search for "BulldozerDtmProvider".
   3. Click `Install Plugin`.
@@ -53,17 +52,16 @@ You can also install the plugin manually:
 
 ### Running Algorithms
 
-<!---TODO : update this part-->
-All the algorithms can be accessed through the QGIS Processing Toolbox under `3D/Rater`. Search for "Bulldozer" to find the algorithms.
+All the algorithms can be accessed through the QGIS Processing Toolbox under `Bulldozer`. Search for "Bulldozer" to find the algorithms.
 
 1. **Basic Algorithm**:
-   - Inputs: DTM file path, output folder path and detailed parameters as specified in the advanced settings.
+   - Inputs: DSM file path, output folder path and detailed parameters as specified in the advanced settings.
 
 2. **Config File Algorithm**:
    - Inputs: Path to configuration file.
 
 3. **Generate Config file**:
-   - Inputs: Detailed parameters as specified in the advanced settings. Output : config yaml file.
+   - Inputs: Detailed parameters as specified in the advanced settings. Output: config yaml file.
 
 
 ## Documentation
