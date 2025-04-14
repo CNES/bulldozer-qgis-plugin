@@ -22,6 +22,8 @@
 
 import os
 
+from itertools import chain
+
 from bulldozer.pipeline.bulldozer_parameters import bulldozer_pipeline_params
 
 
@@ -45,9 +47,7 @@ def get_combined_list_params():
 def get_combined_list_params_for_advanced_app():
     """ Combine all the parameters from the different algorithms
     """
-    params = bulldozer_pipeline_params["REQUIRED (if no config file)"] + \
-        bulldozer_pipeline_params["BASIC SETTINGS"] + \
-        bulldozer_pipeline_params["ADVANCED SETTINGS"]
+    params = list(chain(*bulldozer_pipeline_params.values()))
 
     return params
 
