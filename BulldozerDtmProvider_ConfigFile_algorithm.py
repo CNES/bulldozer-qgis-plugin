@@ -29,7 +29,8 @@ from qgis.core import (QgsProcessing,
 
 from bulldozer.utils.config_parser import ConfigParser
 from .import_bulldozer import dsm_to_dtm
-from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
+#TODO: remove suppress_stdout_if_none and suppress_stderr_if_none imports when tqdm bug on windows gui is fixed
+from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm, suppress_stdout_if_none, suppress_stderr_if_none
 from .BulldozerDtmProvider_Params import check_params, BulldozerParameterException
 
 class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
@@ -58,7 +59,8 @@ class BulldozerDtmProviderConfigFileAlgorithm(BulldozerDtmProviderAlgorithm):
 
         source = self.parameterAsString(parameters, self.INPUT, context)
 
-        dsm_to_dtm(config_path=source)
+        with suppress_stdout_if_none(), suppress_stderr_if_none():
+            dsm_to_dtm(config_path=source)
 
         parser = ConfigParser(False)
         input_params = parser.read(source)

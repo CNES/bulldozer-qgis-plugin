@@ -29,7 +29,8 @@ from qgis.core import (QgsProcessingParameterNumber,
                        QgsProcessingParameterRasterLayer)
 
 from .import_bulldozer import dsm_to_dtm
-from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm
+#TODO: remove suppress_stdout_if_none and suppress_stderr_if_none imports when tqdm bug on windows gui is fixed
+from .BulldozerDtmProvider_algorithm import BulldozerDtmProviderAlgorithm, suppress_stdout_if_none, suppress_stderr_if_none
 from .BulldozerDtmProvider_Params import (check_params,
                                           get_combined_list_params_for_advanced_app,
                                           BulldozerParameterException)
@@ -153,7 +154,8 @@ class BulldozerDtmProviderAdvancedAlgorithm(BulldozerDtmProviderAlgorithm):
         """
         params_for_bulldozer = self.get_params_for_bulldozer(parameters, context, feedback)
 
-        dsm_to_dtm(**params_for_bulldozer)
+        with suppress_stdout_if_none(), suppress_stderr_if_none():
+            dsm_to_dtm(**params_for_bulldozer)
 
         output_dir = params_for_bulldozer["output_dir"]
 

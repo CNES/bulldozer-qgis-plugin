@@ -19,6 +19,9 @@
 # See https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for
 # more details.
 
+import sys
+import contextlib
+
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.core import (QgsProcessingAlgorithm,
@@ -28,6 +31,40 @@ from qgis.core import (QgsProcessingAlgorithm,
 # Initialize Qt resources from file resources.py
 from .resources import *
 
+#TODO: remove suppress_stdout_if_none, suppress_stderr_if_none when tqdm bug on windows gui is fixed
+#TODO: See https://github.com/tqdm/tqdm/issues/794 for more information
+@contextlib.contextmanager
+def suppress_stdout_if_none():
+    # If sys.stdout is None does not manage write method, replace by a False stdout
+    if sys.stdout is None or not hasattr(sys.stdout, "write"):
+        class DummyStdout:
+            def write(self, x): pass
+            def flush(self): pass
+        original_stdout = sys.stdout
+        sys.stdout = DummyStdout()
+        try:
+            yield
+        finally:
+            sys.stdout = original_stdout
+    else:
+        # Sinon, on ne fait rien de spécial
+        yield
+
+@contextlib.contextmanager
+def suppress_stderr_if_none():
+    # If sys.stderr is None does not manage write method, replace by a False stderr
+    if sys.stderr is None or not hasattr(sys.stderr, "write"):
+        class DummyStderr:
+            def write(self, x): pass
+            def flush(self): pass
+        original_stderr = sys.stderr
+        sys.stderr = DummyStderr()
+        try:
+            yield
+        finally:
+            sys.stderr = original_stderr
+    else:
+        yield
 
 class BulldozerDtmProviderAlgorithm(QgsProcessingAlgorithm):
     """
